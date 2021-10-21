@@ -1,4 +1,4 @@
-Linux 命令：任务管理 `ps`
+# Linux 命令：任务管理 `ps`
 
 常用 `man ps`命令
 

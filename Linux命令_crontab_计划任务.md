@@ -4,6 +4,8 @@ Truble Shoot:
 
 1. [Why is my crontab not working, and how can I troubleshoot it?](https://serverfault.com/questions/449651/why-is-my-crontab-not-working-and-how-can-i-troubleshoot-it?newreg=1345265e1c3840a7a26181bd227f9fc5)
 
+`grep CRON /var/log/syslog` 查看系统日志
+
 2. 注意脚本中的相对路径及绝对路径，如果在脚本中使用的了 cat >> ./xxxlog.txt 其中的.表示为/home/pi/路径
 
 `crontab`(cron table)命令用来编辑当前定时任务列表，并且是针对用户的，每一个用户（包括root）都有一个自己的定时计划任务列表。
