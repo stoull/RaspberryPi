@@ -35,10 +35,10 @@ CREATE TABLE System(
 
 ```
 select * from test 
-where date between '03/19/2014' and '03/19/2014 23:59:59'
+where date between '2021-10-22' and '2021-10-22 23:59:59'
 ```
 
 ```
 select * from test 
-where datediff(day, date, '03/19/2014') = 0
+where datediff(day, date, '2021-10-22') = 0
 ```
