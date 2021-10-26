@@ -16,10 +16,46 @@
 | 控制终端 | tty(teletype) | 
 
 * /dev/sd[a-p][1-128]：为实体磁盘的磁盘文件名；
-* /dev/vd[a-d][1-128]：为虚拟磁盘的磁盘文件名
+* /dev/vd[a-d][1-128]：为虚拟磁盘的磁盘文件名；
+
+### 什么是文件系统
+在物理磁盘上存储及管理数据的系统
+#### 特性：
+
+* 物理磁盘分区后，需要格式化对应的文件系统之后，操作系统才能够使用这个文件系统。
+
+	> 因为每种操作系统所设置的文件属性/权限并不相同
+	
+* 每种操作系统能够使用的文件系统并不相同
+	* Linux 的标准文件系统: ext2， ext3, ext4, XFS
+	* Microsoft operating system: FAT, FAT16, FAT32, NTFS, ExFAT
+	* Mac OS: Mac OS Extended(HFS+), Apple File System (APFS)
+
+#### 具体如何运行的
+
+文件系统存储文件时并非只储对应的实际数据，很大可能还会存储文件的权限，拥有者，文件的大小，创建时间等文件属性的内容。
+
+文件系统通常会分两部分来存放
 
 
 
+
+### 文件系统的类型
+* 传统索引式文件系统：ext2 / minix / MS-DOS / FAT （用 vfat 模块） / iso9660 （光盘）等等；
+* 日志式文件系统：ext3 /ext4 / ReiserFS / Windows' NTFS / IBM's JFS / SGI's XFS / ZFS / APFS
+* 网络文件系统：NFS / SMBFS
+
+### 不同操作系统有不同的标准文件系统
+* Linux 的标准文件系统: ext2， ext3, ext4, XFS
+* Microsoft operating system: FAT, FAT16, FAT32, NTFS, ExFAT
+* Mac OS: Mac OS Extended(HFS+), Apple File System (APFS)
+
+### 不同的操作系统支持不同的文件系统
+
+#### Linux 系统
+查看Linux支持的文件系统： `ls -l /lib/modules/$(uname -r)/kernel/fs`
+查看Linux已载入到内存中的支持的文件系统： `cat /proc/filesystems`
+Linux VFS （Virtual Filesystem Switch）：整个 Linux 认识的 filesystem 都是 VFS 在进行管理，VFS自动检测分区上的文件系统类型。
 
 
 硬盘为IDE接口类型 hda dhb： hda1 hda2 hda3...
@@ -28,7 +64,7 @@
 所有磁盘设备及分区都以文件的形式存储在/dev/,但是这些文件不能直接使用，如果要往这些分区内写入数据就需要挂载分区。
 所谓的挂载点就是文件系统中存在的一个目录，通常情况下，创建在/mnt目录下，挂载成功后，访问挂载点就是访问新的存储设备。
 
-
+[漫谈Linux标准的文件系统(Ext2/Ext3/Ext4)](https://www.cnblogs.com/justmine/p/9128730.html)
 
 [7.3 磁盘的分区、格式化、检验与挂载](https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/61.html)
 [鸟哥私房菜 - 7.1 认识 Linux 文件系统](https://wizardforcel.gitbooks.io/vbird-linux-basic-4e/content/59.html)
