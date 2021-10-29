@@ -194,7 +194,7 @@ Filesystem     1K-blocks  Used Available Use% Mounted on
 
 #### 挂载NTFS
 
-NTFS是微软开发的文件系。但微软提供了一个非商用版本的 `ntfs-3`可读写NTFS文件系统。LInux上实现对NTFS文凭系统主要依赖`ntfs-3`及`fuse`工具，这两个工具很有可以linux系统默认是已经安装了的
+NTFS是微软开发的文件系。但微软提供了一个非商用版本的 `ntfs-3g`可读写NTFS文件系统。LInux上实现对NTFS文凭系统主要依赖`ntfs-3g`及`fuse`工具，这两个工具很有可以linux系统默认是已经安装了的
 
 1. 安装`ntfs-3`及`fuse `
 > `sudo apt install ntfs-3g`
@@ -205,9 +205,10 @@ NTFS是微软开发的文件系。但微软提供了一个非商用版本的 `nt
 >
 pi@raspberrypi:~ $ sudo mkdir -p /media/ntfs
 >
-pi@raspberrypi:~ $ sudo blkid /dev/sda2: LABEL="Data" UUID="4F35CAF7CAA10FF7" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="1181fbd8-3209-4e7a-be4a-0888462da65c"
+pi@raspberrypi:~ $ sudo blkid /dev/sda2
+/dev/sda2: LABEL="Data" UUID="4F35CAF7CAA10FF7" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="1181fbd8-3209-4e7a-be4a-0888462da65c"
 >
->pi@raspberrypi:~ $ sudo mount -t ntfs /dev/sda2 /media/ntfs
+>pi@raspberrypi:~ $ sudo mount -t ntfs UUID="4F35CAF7CAA10FF7" /media/ntfs
 >
 >pi@raspberrypi:~ $ mount | grep ntfs
 /dev/sda2 on /media/ntfs type ntfs (rw,relatime,uid=0,gid=0,fmask=0177,dmask=077,nls=utf8,errors=continue,mft_zone_multiplier=1)
