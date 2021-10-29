@@ -64,7 +64,7 @@ deb http://archive.ubuntu.com/ubuntu/ buster main contrib non-free rpi
 `apt search <search item>`
 
 #### 显示安装包信息
-`apt search <search item>`
+`apt list <search item>`
 
 
 #### 安装-包
