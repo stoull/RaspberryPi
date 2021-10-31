@@ -91,7 +91,7 @@ Windows中的FAT文件系统就不是索引式文件系统,像是一个链式系
 ## 文件系统的类型
 * 传统文件系统：ext2 / minix / MS-DOS / FAT （用 vfat 模块） / iso9660 （光盘）等等；
 * 日志式文件系统：ext3 /ext4 / ReiserFS / Windows' NTFS / IBM's JFS / SGI's XFS / ZFS / APFS
-* 网络文件系统：NFS / SMBFS
+* 网络文件系统：NFS, SMBFS, SMB, WebDAV, AFP
 
 ## 不同的操作系统支持不同的文件系统
 
