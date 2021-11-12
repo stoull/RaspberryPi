@@ -64,9 +64,25 @@ Samba主要由`smbd`及`nmbd`两个服务，主要控制为`start`、`stop`、`r
 `sudo service nmbd restart`
 `sudo service smbd stop`
 
-设置samba文件共享的最要步骤为
+设置samba文件共享的主要步骤为
 
 1. 安装samba
+
+samba一般包含以下程序：
+
+* **samba**: Provides an SMB/Common Internet File System (CIFS) server that can be used to provide network services to SMB/CIFS clients
+* **samba-client**: Provides some SMB/CIFS clients to complement the built-in SMB/CIFS file system in Linux. These clients allow access to SMB/CIFS shares and printing to SMB/CIFS printers.
+* **samba-common**: Provides files necessary for both the server and client Samba packages
+* **samba-winbind**: Provides the winbind daemon and client tools. winbind enables Linux membership in Windows domains and the use of Windows user and group accounts
+* **samba-winbind-clients**: Provides the Network Security Services (NSS) library and Pluggable Authentication Modules (PAM) needed to communicate with winbind
+
+>`sudo apt update`
+>
+>`sudo apt install samba samba-common smbclient` // `smbclient`可以不用安装，用来测试用
+>
+>`whereis samba` 或者
+>``
+
 2. 配置samba
 >Samba的配置文件为：`/etc/samba/smb.conf`
 >
