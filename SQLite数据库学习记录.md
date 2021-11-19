@@ -11,8 +11,10 @@ CREATE TABLE System(
    ...> cpu_rate FLOAT,
    ...> memory_rate FLOAT,
    ...> fan_rate FLOAT,
+   ...> count INTEGER,
    ...> sys_run_time VARCHAR(25),
-   ...> note VARCHAR(50)
+   ...> note TEXT,
+   ...> isRead BOOLEAN
    ...> );
 ```
 

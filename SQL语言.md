@@ -29,6 +29,48 @@ SQL语言分成了几种要素，包括：
 | AS | 用于在查看结果时更改字段名称 | SELECT employee AS 'department1'  |
 
 
+## 创建和删除数据 CREATE and DROP
+
+创建一个数据库
+> `CREATE DATABASE news_notification;`
+
+删除一个数据库
+> `DROP DATABASE news_notification;`
+
+载入一个数据库
+> `USE news_notification;`
+
+创建一个news和notifications两个表
+>
+```
+CREATE TABLE news(		// create a table
+	id INT NOT NULL AUTO_INCREMENT,
+	title VARCHAR(255) NOT NULL,
+	detail TEXT,
+	isRead BOOLEAN,
+	create_date TIMESTAMP NOT NULL,
+	count INTEGER,
+	PRIMARY KEY (id)
+);
+```
+>
+```
+CREATE TABLE notifications(
+	id INT NOT NULL AUTO_INCREMENT,
+	name VARCHAR(255) NOT NULL,
+	Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+	PRIMARY KEY (id),
+	FOREIGN KEY (news_id) REFERENCES news(id)
+);
+```
+
+更改数据类型（Sqlite 不支持更改）
+```
+ALTER TABLE news // modifid the table
+ADD another_column VARCHAR(50);
+DROP TABLE news;
+```
+
 
 ## 查询 SELECT
 
@@ -68,6 +110,11 @@ SELECT * FROM Customers
 WHERE City='Berlin'
 ```
 
+%表示匹配任何字符或数字或其它的
+```
+SELECT * FROM system WHERE date LIKE '%05:40:01%' order by date;
+```
+
 ```
 SELECT * FROM Customers
 WHERE Country='Germany' AND City='Berlin';
@@ -93,7 +140,7 @@ SELECT * FROM Customers
 WHERE Country='Germany' AND (City='Berlin' OR City='München');
 ```
 
-#### ORDER BY
+#### 排序
 
 ```
 SELECT *
@@ -113,6 +160,10 @@ ORDER BY Country ASC, CustomerName DESC;
 ```
 这个语句会查询所有的 Customers 信息，并按Country升序排列，按CustomerName降序排列
 </details>
+
+#### 使用别名
+
+`SELECT id AS 'id', name AS 'Band Name' FROM bands;`
 
 ## 增加/插入 INSERT
 
@@ -167,6 +218,71 @@ WHERE Address IS NULL;
 ```
 
 </details>
+
+## 更新数据 UPDATE
+
+```
+UPDATE system 
+SET cpu_rate = 1.2 
+WHERE date='2021-11-16 12:00:01';
+```
+这个语句将会把`date = 2021-11-16 12:00:01 `记录中的`cpu_rate`更改为`1.2`
+
+## 删除数据 DELETE
+
+这个将会把表 system 中所有的数据都删除
+> `DELETE FROM system;`
+
+删除特别的删除
+>`DELETE FROM system WHERE date='2021-11-16 12:00:01';`
+
+
+## 数据关联 JOIN
+
+下面的语句会bands表中id和albums中band_id相等的记录合并关联并输出。
+```
+SELECT * FROM bands
+JOIN albums ON bands.id = albums.band_id;
+```
+
+JOIN 有 `INNER` `LEFT` 和`RIGHT` JOIN。INNER是两边的条件都要匹配，LEFT和RIGHT则是字面是那边，那一边的条件就不需要完全的符合。
+```
+SELECT * FROM bands
+LEFT JOIN albums ON bands.id = albums.band_id;
+```
+
+## 使用函数 AVG SUM COUNT ....
+
+求平均数：
+>SELECT AVG(cpu_temp) FROM system;
+
+求总和
+>select SUM(cpu_rate) FROM system;
+
+求总数
+> SELECT sum(cpu_rate) FROM system;
+
+将指定相同的column合并并计数
+> 
+```
+SELECT band_id, COUNT(band_id) FROM albums
+GROUP BY band_id;
+```
+
+```
+select cpu_temp, count(cpu_temp) AS num_temp 
+from system group by cpu_temp
+order by num_temp desc limit 10;
+```
+## 复杂语句阅读
+```
+SELECT b.name AS band_name, COUNT(a.id) AS num_albums
+FROM bands AS b
+LEFT JOIN albums AS a ON b.id = a.band_id
+WHERE b.name = 'Deuce'
+GROUP BY b.id
+HAVING num_albums = 1;
+```
 
 ## [维基百科] 语法图
 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.0" width="831" height="252" id="svg7418">
