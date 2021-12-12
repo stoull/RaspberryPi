@@ -4,6 +4,7 @@
 
 ```
 CREATE TABLE System(
+   ...> id INT NOT NULL AUTO_INCREMENT,
    ...> date DATETIME NOT NULL,
    ...> core_frequency LONG,
    ...> cpu_temp FLOAT,
@@ -14,7 +15,8 @@ CREATE TABLE System(
    ...> count INTEGER,
    ...> sys_run_time VARCHAR(25),
    ...> note TEXT,
-   ...> isRead BOOLEAN
+   ...> isRead BOOLEAN,
+   ...> PRIMARY KEY (id)
    ...> );
 ```
 

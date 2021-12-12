@@ -1,5 +1,7 @@
 # JavaScript 学习记录
 
+[JavaScript 就要统治世界了？](https://segmentfault.com/a/1190000003767058)
+
 js可以在哪里运行？
 
 1. 浏览器中的console中运行。
