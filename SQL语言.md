@@ -285,6 +285,31 @@ GROUP BY b.id
 HAVING num_albums = 1;
 ```
 
+
+## one to many
+
+## many to many
+
+```
+输出标签为‘阿巴斯’的所有电影
+select * from movie m
+join MovieTags mt on m.id=mt.movieId
+join tags t on t.id=mt.tagId
+where t.name="阿巴斯";
+
+输出标签为‘阿巴斯’的所有电影
+select * from tags t
+join MovieTags mt on mt.tagid=t.id
+join movie m on m.id=mt.movieId
+where t.name="阿巴斯";
+
+输出电影‘东京物语’的所有标签
+select * from movie m 
+join MovieTags mt on m.id=mt.movieId
+join tags t on t.id=mt.tagId
+where m.name="东京物语";
+```
+
 ## [维基百科] 语法图
 <svg xmlns:svg="http://www.w3.org/2000/svg" xmlns="http://www.w3.org/2000/svg" version="1.0" width="831" height="252" id="svg7418">
   <defs id="defs7420"/>
