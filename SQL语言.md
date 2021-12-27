@@ -61,6 +61,7 @@ CREATE TABLE notifications(
 	Timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
 	PRIMARY KEY (id),
 	FOREIGN KEY (news_id) REFERENCES news(id)
+	or CONSTRAINT FK_movie_id FOREIGN KEY (movie_id) REFERENCES movie(id)
 );
 ```
 
