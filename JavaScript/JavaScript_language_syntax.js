@@ -205,3 +205,68 @@ let rabbit = new Rabbit("White Rabbit");
 
 rabbit.run(5); // White Rabbit runs with speed 5.
 rabbit.stop(); // White Rabbit stands still. White Rabbit hides!
+
+
+// ECMAScript 2015, also known as ES6, introduced JavaScript Classes.
+// JavaScript Classes are templates for JavaScript Objects.
+class Rectangle {
+	// Public field
+	height = 0;
+	width;
+
+	// Private field
+	#max_width = 0;
+
+	constructor(height, width) {
+		this.height = height;
+		this.width = width;
+		this.max_width = width*10;
+	}
+
+	static displayName = "Rectangle";
+	static isSame(a, b) {
+		const aWidth = a.width;
+		const aHeight = a.height;
+		const bWidth = b.width;
+		const bHeight = b.height;
+		return aWidth == bWidth && aHeight == bHeight;
+	}
+
+	// Getter
+	get area() {
+		return this.calcArea();
+	}
+
+	// Method
+	calcArea() {
+		return this.height * this.width;
+	}
+
+	// Generatro methods
+	*getSides() {
+		for (let side=0; side<4; side++) {
+			if (side%1 == 0) {
+				yield height;
+			} else {
+				yield width;
+			}
+		}
+	}
+}
+
+const square_10 = new Rectangle(10, 10);
+const square_12 = new Rectangle(12, 12);
+
+console.log(square_10.area);
+console.log(Rectangle.displayName);
+const isSame = Rectangle.isSame(square_10, square_12)
+
+
+
+
+
+
+
+
+
+
