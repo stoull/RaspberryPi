@@ -198,3 +198,36 @@ WantedBy=multi-user.target
 **注意**
 > 服务运行时机是可以设置的，上面的例子是在启动后比较晚的时机运行的（当网络可用之后`After=network.target`）, 可根据需要设置其它的时机。
 
+## 问题
+### 运行后发邮件的问题
+当程序在所指定的时间执行后，如是有输出信息，或者错误信息，系统会将这些信息以邮件的形式发送给当前的用户，如果你不希望收到这个邮件，可以在每一行后加上`> /dev/null 2>&1`即可，如：
+
+`20 03 * * * . /etc/profile;/bin/sh /var/www/system_monitor.sh > /dev/null 2>&1 `
+
+### 脚本无法执行的问题
+如果我们使用 crontab 来定时执行脚本，无法执行，但是如果直接通过命令（如：./test.sh)又可以正常执行，这主要是因为无法读取环境变量的原因。如果有些项目有import, 还会提示`No module named scrapy`之类的。
+
+**解决方法：**
+
+*  1. 所有用来的命令写成绝对路径。如:`/home/pi/Desktop/news_monitor.sh`
+*  2. 在脚本开头运行环境变量的文件。在shell脚本开头使用代码：
+
+>
+```
+#!/bin/sh
+. /etc/profile
+```
+
+*  3. 在 /etc/crontab 中添加环境变量，在可执行命令之前添加命令 . /etc/profile;/bin/sh，使得环境变量生效，例如：
+
+>
+`20 03 * * * . /etc/profile;/bin/sh /var/www/runoob/test.sh`
+
+如果是运行python脚本，要注意cron使用的使用的python版本和你实际项目使用的python版本：
+
+`20 03 * * * /path/to/virtual/env/bin/python /home/pi/Desktop/python_projects/crawl.py`
+
+如果不是使用虚拟python环境，则使用`whereis pyhton3`找出对应的python路径
+
+[Linux进阶之环境变量文件/etc/profile、/etc/bashrc、/etc/environment](https://www.cnblogs.com/renyz/p/11351934.html)
+
