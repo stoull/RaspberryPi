@@ -206,6 +206,7 @@ NTFS是微软开发的文件系。但微软提供了一个非商用版本的 `nt
 pi@raspberrypi:~ $ sudo mkdir -p /media/ntfs
 >
 pi@raspberrypi:~ $ sudo blkid /dev/sda2
+>
 /dev/sda2: LABEL="Data" UUID="4F35CAF7CAA10FF7" TYPE="ntfs" PARTLABEL="Basic data partition" PARTUUID="1181fbd8-3209-4e7a-be4a-0888462da65c"
 >
 >pi@raspberrypi:~ $ sudo mount -t ntfs UUID="4F35CAF7CAA10FF7" /media/ntfs
