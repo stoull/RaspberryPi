@@ -13,7 +13,7 @@
 > 1. 使用`diskutil list`查看分区信息
 > 2. 如果NTFS磁盘已被系统自动挂载，先卸载对应的磁盘分区
 > `sudo diskutil unmount /dev/disk4s2`
-> 3. 新建一个目录用来挂载磁盘
+> 3. 新建一个目录用来挂载磁盘(这个文件夹在硬盘弹出后，会被移除)
 > `sudo mkdir /Volumes/NTFS`
 > 4. 以读写模式挂载NTFS 磁盘
 > `sudo /usr/local/bin/ntfs-3g /dev/disk1s1 /Volumes/NTFS -o local -o allow_other -o auto_xattr -o auto_cache`
@@ -24,3 +24,6 @@
 
 4. 卸载
 `sudo diskutil unmount /dev/disk4s2`
+
+## 使用Boot Camp Assistant安装windows系统
+> 用Boot Camp Assistant在mac安装一个windows系统，这样就可以读写NTFS了
