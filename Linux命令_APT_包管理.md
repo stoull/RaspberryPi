@@ -29,6 +29,23 @@ apt-get may be considered as lower-level and "back-end", and support other APT-b
 >
 This is the correct answer (for Debian and Ubuntu as well as other derivatives like Mint). In particular, running sudo apt upgrade will perform the same operations as sudo apt-get upgrade --with-new-pkgs. It will install new packages but, unlike sudo apt-get dist-upgrade, it will not remove old ones (except when installing a new version of the same package, of course--which sudo apt-get upgrade will also do). man apt further corroborates that this answer is correct. – Eliah Kagan
 
+## Install `apt`
+
+### On Debian based systems
+从这里[apt Source-Debian](http://ftp.us.debian.org/debian/pool/main/a/apt/)找到`apt`的资源及其版本。
+
+1. 使用`wget`下载
+
+`wget http://ftp.us.debian.org/debian/pool/main/a/apt/apt_2.4.2_amd64.deb -O apt.deb -O apt.deb`
+
+2. 使用`dpkg`安装apt
+
+`sudo dpkg -i apt.deb` or without sudo `pkexec dpkg -i apt.deb`
+
+### On Ubuntu based system
+[apt Source-Ubuntu](http://security.ubuntu.com/ubuntu/pool/main/a/apt/?C=M;O=D)
+
+
 
 ## `apt` Commands
 

@@ -38,7 +38,7 @@ app = Flask(__name__)
 def hello_world():
     return "<p>Hello, World!</p>"
 ```
-将上面的代存储名为`helloy.py `，运行web程序:
+将上面的代存储名为`hello.py `，运行web程序:
 
 ```
 $ export FLASK_APP=hello
