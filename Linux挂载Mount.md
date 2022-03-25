@@ -137,6 +137,9 @@ devtmpfs on /dev type devtmpfs (rw,relatime,size=1827468k,nr_inodes=97607,mode=7
 
 
 #### 开始挂载
+
+>可先用`sudo fdisk -l`查看磁盘是否已经挂载，如已挂载先卸载`sudo umount /media/ntfs`
+
 确保磁盘的文件系统格式是系统支持的然后开始挂载。根据[Filesystem Hierarchy Standard](https://www.pathname.com/fhs/pub/fhs-2.3.html#MNTMOUNTPOINTFORATEMPORARILYMOUNT) 标准, 挂载一般挂载在`/media`及`/mnt`目录下。
 
 * `/media`: 用来挂载可移动设备的

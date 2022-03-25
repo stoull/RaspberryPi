@@ -16,7 +16,7 @@
 > 3. 新建一个目录用来挂载磁盘(这个文件夹在硬盘弹出后，会被移除)
 > `sudo mkdir /Volumes/NTFS`
 > 4. 以读写模式挂载NTFS 磁盘
-> `sudo /usr/local/bin/ntfs-3g /dev/disk1s1 /Volumes/NTFS -o local -o allow_other -o auto_xattr -o auto_cache`
+> `sudo /usr/local/bin/ntfs-3g /dev/disk2s1 /Volumes/NTFS -o local -o allow_other -o auto_xattr -o auto_cache`
 > 或者 `sudo /usr/local/sbin/mount_ntfs /dev/disk4s2 /Volumes/NTFS`
 
 这样就会挂载一个名为NTFS的磁盘，可进行读写操作，使用`mount`查看对应的信息为：
