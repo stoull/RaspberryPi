@@ -7,9 +7,17 @@
 
 [网络文件系统](https://zh.wikipedia.org/zh-cn/网络文件系统)
 
-SMB与NFS是NAS系统的主要两个协议
+## Samba 是什么
 
-###**SMB**/*CIFS*
+Samba 是**SMB**/*CIFS* 协议（*[及其它支持协议](https://zh.wikipedia.org/zh-cn/Samba)*）在Unix系列系统上的实现，目的是实现不同系统(Unix系列系统及Windows)间的文件共享，是开源软件。
+
+**出现背景：**
+
+Samba出现前Windows实现的是**SMB**/*CIFS*协议在Windows间进行文件共享，Unix及类Unix系统间用的是NFS进行进行文件共享。但Windows与Unix系列系统之间是没有对应的协议实现，所以不能进行网络文件共享。Samba的出现就是在Linux上的实现SMB协议，这样不同系统间就可以进行文件共享了。
+
+
+
+### Samba主要协议**SMB**/*CIFS*
 
 **SMB**
 
@@ -25,19 +33,13 @@ CIFS
 网络文件共享系统(Common Internet File System, 缩写为CIFS)，是由微软开发的协议，SMB1.0 的升级版本。但现在都不使用这个协议了，现在都使用SMB3。相对于CIFS来说，SMB3或SMB2都是很大的升级。
 > 1996年，约于升阳推出WebNFS的同时，微软提出将SMB改称为Common Internet File System。此外微软还加入了许多新的功能，比如符号链接、硬链接、提高文件的大小.....不过这些提案现在均已过期。[Wiki_服务器消息块](https://zh.wikipedia.org/zh-cn/伺服器訊息區塊)
 
-[Server Message Block](https://en.wikipedia.org/wiki/Server_Message_Block)
+>Samba 4.0 支持SMB3.0 [Samba 4.0 support for SMB 3.0](https://wiki.samba.org/index.php/Samba_4.0_Whitepaper#New_Features)
 
 SMB在Windows系统上的实现就是‘网络共享’，‘网上邻居’？等功能，比如你能访问家庭网络中其它电脑共享的文件夹[文件服务和SMB](https://docs.microsoft.com/zh-cn/windows-server/storage/file-server/file-server-smb-overview)。
 
-SMB与CIFS可通用
+SMB与CIFS可通用: [CIFS vs SMB: What’s the Difference?](https://www.varonis.com/blog/cifs-vs-smb/)
 
-### Samba 是什么
-
-Samba 是**SMB**/*CIFS* 协议（*[及其它支持协议](https://zh.wikipedia.org/zh-cn/Samba)*）在Unix系列系统上的实现，目的是实现不同系统(Unix系列系统及Windows)间的文件共享，是开源软件。
-
-**出现背景：**
-
-Samba出现前Windows实现的是**SMB**/*CIFS*协议在Windows间进行文件共享，Unix及类Unix系统间用的是NFS进行进行文件共享。但Windows与Unix系列系统之间是没有对应的协议实现，所以不能进行网络文件共享。Samba的出现就是在Linux上的实现SMB协议，这样不同系统间就可以进行文件共享了。
+SMB与NFS是[NAS](https://zh.wikipedia.org/zh-cn/网络附接存储)系统的主要两个协议
 
 ### Samba 能用来做什么
 
@@ -50,23 +52,11 @@ Samba主要的两个程序为`smbd`和`nmbd`，这个程序主要实现了SMB协
 * Primary Domain Controller for NT (Samba 3)
 * Active Directory Domain Controller (from Samba 4)
 
-### Samba 原理是啥
-
-### 实例怎么用
-
-
-
-**服务控制:**
-
-Samba主要由`smbd`及`nmbd`两个服务，主要控制为`start`、`stop`、`restart`、`reload`，如：
-
-`sudo service smbd restart`
-`sudo service nmbd restart`
-`sudo service smbd stop`
+### Samba共享文件实例
 
 设置samba文件共享的主要步骤为
 
-1. 安装samba
+#### 1.安装samba
 
 samba一般包含以下程序：
 
@@ -76,35 +66,43 @@ samba一般包含以下程序：
 * **samba-winbind**: Provides the winbind daemon and client tools. winbind enables Linux membership in Windows domains and the use of Windows user and group accounts
 * **samba-winbind-clients**: Provides the Network Security Services (NSS) library and Pluggable Authentication Modules (PAM) needed to communicate with winbind
 
+开始安装：
 >`sudo apt update`
 >
 >`sudo apt install samba samba-common smbclient` // `smbclient`可以不用安装，用来测试用
 >
->`whereis samba` 或者
->``
+>`sudo service smbd status` 查看运行状态
 
-2. 配置samba
->Samba的配置文件为：`/etc/samba/smb.conf`
->
->Samba服务控制: samba主要由`smbd`及`nmbd`两个服务，主要控制为`start`、`stop`、`restart`、`reload`，如：
+#### 2.配置samba
+Samba的配置文件为：`/etc/samba/smb.conf`
+
+一般是基于生成的初始配置文件进行更改配置, 所以开始更改配置文件前，可先复制一份初始的配置文件:
+>`sudo mv /etc/samba/smb.conf /etc/samba/smb.conf_original`
+
+开始编辑配置文件：
+>`sudo vi  /etc/samba/smb.conf`
+
+
+
+**Samba服务控制**: samba主要由`smbd`及`nmbd`两个服务，主要控制为`start`、`stop`、`restart`、`reload`，如：
 >
 `sudo service smbd restart`
 >
 `sudo service nmbd restart`
 >
 `sudo service smbd stop`
+>
+>`sudo service smbd status` 查看运行状态
 
-3. 设置共享的文件夹
-4. 设置给用户设置访问密码
+#### 3.设置共享的文件夹
 
-#### 安装samba
+#### 4.设置给用户设置访问密码
+
+#### 5. 连接a Samba Share
+
+`smb://<servername>/<sharename>`
 
 
->Samba 4.0 支持SMB3.0 [Samba 4.0 support for SMB 3.0](https://wiki.samba.org/index.php/Samba_4.0_Whitepaper#New_Features)
-
-[CIFS vs SMB: What’s the Difference?](https://www.varonis.com/blog/cifs-vs-smb/)
-
-[Samba](https://zh.wikipedia.org/zh-cn/Samba) 是种用来让UNIX系列的操作系统与微软Windows操作系统的SMB/CIFS（Server Message Block/Common Internet File System）网络协议做链接的自由软件。
 
 [Samba: An Introduction](https://www.samba.org/samba/docs/SambaIntro.html)
 
