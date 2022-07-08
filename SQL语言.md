@@ -1,5 +1,18 @@
 # SQL 语言
 
+[SQL教程（从入门到精通）](http://c.biancheng.net/sql/)
+
+[SQL BASIC](https://www.tutorialrepublic.com/sql-tutorial/sql-joining-tables.php)
+
+
+根据 type.id 找电影
+select movie.name, movie.id, type.name from movie join (movie_type join type on movie_type.type_id = type.id and type.id = 1) as newTable on movie.id = newTable.movie_id;
+
+
+根据 电影 找 id
+select movie.name, movie.id, type.name from movie join (movie_type join type on movie_type.type_id = type.id) as newTable on movie.id = newTable.movie_id;
+
+
 SQL, Structured Query Language:结构化查询语言, 是一种特定目的编程语言，用于管理关系数据库管理系统（RDBMS），或在关系流数据管理系统（RDSMS）中进行流处理。来自[Wiki SQL](https://zh.wikipedia.org/zh-cn/SQL)
 
 ## 语法
@@ -239,6 +252,8 @@ WHERE date='2021-11-16 12:00:01';
 
 
 ## 数据关联 JOIN
+
+JOIN 其实是将不同表的记录按一定的条件合并起来，形成一成新的临时表。并且可以对这个临时表进行操作。‘条件合并起来’的条件有 `INNER` `LEFT` 和`RIGHT`, 如果把两个表看成两个相交的圆， INNER 即为取两圆的交集，LEFT 为取左边的圆，RIGHT为取右边的圆。
 
 下面的语句会bands表中id和albums中band_id相等的记录合并关联并输出。
 ```

@@ -74,3 +74,4 @@ $ pip install flask-login
 
 
 
+# 如何分离功能模块，不让app.py文件那么大？
