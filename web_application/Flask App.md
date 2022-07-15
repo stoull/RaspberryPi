@@ -4,6 +4,8 @@
 
 [Templates](https://flask.palletsprojects.com/en/2.0.x/templating/)
 
+[Large Applications as Packages](https://flask.palletsprojects.com/en/2.1.x/patterns/packages/)
+
 ## 安装 Flask
 ### 安装虚拟环境
 
@@ -75,3 +77,5 @@ $ pip install flask-login
 
 
 # 如何分离功能模块，不让app.py文件那么大？
+
+[Templates](https://flask.palletsprojects.com/en/2.0.x/templating/)
