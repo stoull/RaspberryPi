@@ -53,24 +53,61 @@ When JavaScript variables are declared, they have an initial value of undefined
 
 ### array
 
->
+```
 const sandwich = ["peanut butter", "jelly", "bread"];
->
+
 const myArray = [
   [1, 2, 3],
   [4, 5, 6],
   [7, 8, "SkyWalker"],
   [[10, 11, 12], 13, 14],
 ];
->
+
 const myData = myArray[2][1]; // 8
+```
+
+更多方法有：
+>```push(), pop(), shift(), unshift(), splice(), slice(), indexOf(), every(), forEach(), map() etc```
 
 ```
 const arr1 = [1, 2, 3];
-arr1.push(4); 	// [1,2,3,4]
-const oneDown = arr1.pop();		// 4
-const oneShift = arr1.shift();	// 1
-arr1.unshift(8);		// [8, 2, 3]
+arr1.push(4); 		// 在最后面增加一个元素 [1,2,3,4]
+arr1.unshift(8);		// 在最前面增加一个元素 [8,1,2,3,4]
+const oneDown = arr1.pop();		// 移除最后面的一个元素 4
+const oneShift = arr1.shift();	// 移除最前面的一个元素 8
+
+
+// 删除array中间截n个值 splice
+let array = ['I', 'am', 'feeling', 'really', 'happy'];
+let newArray = array.splice(3, 2);	// 3为开始位置，2为长度 newArray 为 ['really', 'happy'] array 为 ['I', 'am', 'feeling']
+
+// 替换 splice
+const numbers = [10, 11, 12, 12, 15];
+const startIndex = 3;
+const amountToDelete = 1;
+numbers.splice(startIndex, amountToDelete, 13, 14);    // 结果为[ 10, 11, 12, 13, 14, 15 ]
+
+// 复制array中间截n个值 slice
+slice() takes only 2 parameters — the first is the index at which to begin extraction, and the second is the index at which to stop extraction
+
+let weatherConditions = ['rain', 'snow', 'sleet', 'hail', 'clear'];
+let todaysWeather = weatherConditions.slice(1, 3);	// 结果 todaysWeather为['snow', 'sleet'] weatherConditions 保持不变
+
+// 全部复制
+let thisArray = [true, true, undefined, false, null];
+let thatArray = [...thisArray];	// thatArray 为 [true, true, undefined, false, null] thisArray保持不变
+
+// 全部插入
+let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
+let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
+
+// 查找
+let fruits = ['apples', 'pears', 'oranges', 'peaches', 'pears'];
+
+fruits.indexOf('dates');	// -1
+fruits.indexOf('oranges');	// 2
+fruits.indexOf('pears');	// 1
+
 ```
 
 
@@ -476,20 +513,27 @@ let twinkleStar = "Twinkle, twinkle, little star";
 let starRegex = /twinkle/ig;
 let result = twinkleStar.match(starRegex); // result 为：['Twinkle', 'twinkle']
 
-
 /[aeiou]/ig
 /[A-Za-z0-9_]/ig		// same as  /\w/g
 /\w/					// same as  /[A-Za-z0-9_]/ig
+/\W/					// same as /[^A-Za-z0-9_]/
+/\s/					// same as /[ \r\t\f\n\v]/
+/\S/					// same as [^ \r\t\f\n\v]
 
-/\W/	// same as /[^A-Za-z0-9_]/
-\d	// digits
-\D	// non-digits
+\d		// digits
+\D		// non-digits
 
 /[^aeiou0-9]/gi
 /^Cal/
 /caboose$/
 /s+/g
 /Aa*/g
+/Tim{3,}ber/		// 3 or more
+/Tim{3}ber/			// exactly 3 times
+/favou?rite/		// match ‘favorite’ or ‘favourite’
+
+/(?=\w{6,})(?=\w*\d{2,})/ // match 大于六位，且有连续的两个数字
+
 ```
 
 ##### Lazy Matching
@@ -499,6 +543,82 @@ let aString = "titanic";
 let greedyMatch = "/t[a-z]*i/";		// return ["titani"]
 let lazyMatch = "/t[a-z]*i/";		// return ["ti"]
 ```
+
+
+##### Group
+
+```
+/P(engu|umpk)in/	// match 'Penguin' or 'Pumpkin'
+let repeatRegex = /(\w+) \1 \1/;	// \1 means same as the first group
+
+```
+
+##### Replace
+
+```
+let wrongText = "The sky is silver.";
+let silverRegex = /silver/;
+wrongText.replace(silverRegex, "blue");	// 结果为 "The sky is blue"
+
+"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');  // 结果为 "Camp Code"
+
+"Any string".replace(/^\s+|\s+$/g, '');  // 移除字符串前后的空格
+
+```
+
+
+## Data Structures
+
+console.log(typeof "");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
