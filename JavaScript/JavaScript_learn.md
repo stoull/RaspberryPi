@@ -50,6 +50,14 @@ When JavaScript variables are declared, they have an initial value of undefined
 >
 >let fullName = firstName + "Chen"
 
+```
+slice(start, end)
+substring(start, end)
+substr(start, length)
+```
+// 大小定转换
+'a'.toUpperCase()
+'A'.toLowerCase() 
 
 ### array
 
@@ -67,7 +75,7 @@ const myData = myArray[2][1]; // 8
 ```
 
 更多方法有：
->```push(), pop(), shift(), unshift(), splice(), slice(), indexOf(), every(), forEach(), map() etc```
+>```toString(), push(), pop(), shift(), unshift(), splice(), slice(), indexOf(), every(), forEach(), map() etc```
 
 ```
 const arr1 = [1, 2, 3];
@@ -171,8 +179,37 @@ const ourDog = {
 const dogName = ourDog.name;
 const fNames = ourDog['friend names'];
 ourDog['new property'] = "new value";
+ourDoc.speed = 32;
 delete ourDog.bark;		// remove the property of 'bark'
 ourDog.hasOwnProperty("bark");	// 是否有bark属性
+'bark' in ourDog;	// 是否有bark属性
+```
+loop all keys in an object:
+
+```
+const users = {
+  Alan: {
+    online: false
+  },
+  Jeff: {
+    online: true
+  },
+  Sarah: {
+    online: false
+  }
+}
+
+function countOnline(usersObj) {
+  let onlineUserCount = 0
+  for (let user in usersObj) {
+    if (usersObj[user].online == true) {
+      onlineUserCount += 1
+    }
+  }
+  return onlineUserCount
+}
+
+console.log(countOnline(users));
 ```
 
 ### Lookup
@@ -574,6 +611,7 @@ console.log(typeof "");
 
 
 
+## Object Oriented Programming
 
 
 
