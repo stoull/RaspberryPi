@@ -613,22 +613,85 @@ console.log(typeof "");
 
 ## Object Oriented Programming
 
+`this` keyword present the class self.
 
 
+### Constructor
 
+```
+function Bird(name, color) {
+  this.name = name;
+  this.color = color;
+  this.numLegs = 2;
+}
 
+let blueBird = new Bird();
 
+```
 
+> Anytime a constructor function creates a new object, that object is said to be an instance of its constructor. 
 
+#### `instanceof` check class type return `true` or `false`
 
+`blueBird  instanceof  Bird;` // will return `true`
 
+`blueBird.constructor === Bird`	// will return `true` but constructor can be overwritten
 
+#### `ownProps` Properties
 
+```
+for (let property in blueBird) {
+  if(blueBird.hasOwnProperty(property)) {
+    ownProps.push(property);
+  }
+}
+console.log(ownProps);	// name color and numLegs
+```
 
+#### `Prototype` Properties
+> `prototype` as a "recipe" for creating objects. Nearly every object in JavaScript has a prototype property which is part of the constructor function that created it.
+> 
+> an object inherits its prototype directly from the constructor function that created it
+> 
+> an object’s prototype itself is an objec
+> prototype chain
 
+`Bird.prototype.canFly = true`	// Added a class property to the class of `Bird`, so every instance of Bird has this property
 
+```
+let ownProps = [];
+let prototypeProps = [];
 
+for (let property in Bird) {
+  if(duck.hasOwnProperty(property)) {
+    ownProps.push(property);
+  } else {
+    prototypeProps.push(property);
+  }
+}
 
+console.log(ownProps);
+console.log(prototypeProps);
+
+```
+
+`Bird.prototype.isPrototypeOf(blueBird);`
+`Object.prototype.isPrototypeOf(Bird.prototype);`
+
+#### `Prototype` set more Properties at once
+
+```
+Bird.prototype = {
+  constructor: Bird,
+  numLegs: 2, 
+  eat: function() {
+    console.log("nom nom nom");
+  },
+  describe: function() {
+    console.log("My name is " + this.name);
+  }
+};
+```
 
 
 
