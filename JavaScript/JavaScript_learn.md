@@ -623,6 +623,9 @@ function Bird(name, color) {
   this.name = name;
   this.color = color;
   this.numLegs = 2;
+  
+  // Here age is a private propety
+  let age = 3;
 }
 
 let blueBird = new Bird();
@@ -649,12 +652,10 @@ console.log(ownProps);	// name color and numLegs
 ```
 
 #### `Prototype` Properties
-> `prototype` as a "recipe" for creating objects. Nearly every object in JavaScript has a prototype property which is part of the constructor function that created it.
-> 
-> an object inherits its prototype directly from the constructor function that created it
-> 
-> an object’s prototype itself is an objec
-> prototype chain
+* `prototype` as a "recipe" for creating objects. Nearly every object in JavaScript has a prototype property which is part of the constructor function that created it.
+* an object inherits its prototype directly from the constructor function that created it
+* an object’s prototype itself is an objec
+* prototype chain
 
 `Bird.prototype.canFly = true`	// Added a class property to the class of `Bird`, so every instance of Bird has this property
 
@@ -678,6 +679,8 @@ console.log(prototypeProps);
 `Bird.prototype.isPrototypeOf(blueBird);`
 `Object.prototype.isPrototypeOf(Bird.prototype);`
 
+`Object` is a supertype for all objects in JavaScript.
+
 #### `Prototype` set more Properties at once
 
 ```
@@ -693,11 +696,116 @@ Bird.prototype = {
 };
 ```
 
+#### 继承 Inherite
+
+父类：
+
+```
+function Animal() { }
+Animal.prototype.eat = function() {
+  console.log("nom nom nom");
+};
+
+```
+
+子类：
+
+```
+function Bird() { }
+Bird.prototype = Object.create(Animal.prototype);
+Bird.prototype.constructor = Bird;
+
+// 子类的方法
+Bird.prototype.fly = function() {
+  console.log("I'm flying!");
+};
+
+let duck = new Bird();
+duck.eat();
+duck.fly();
+```
+
+#### mixins Extension 扩展
+
+> A mixin allows other objects to use a collection of functions.
+
+A collection of functions:
+
+```
+let flyMixin = function(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  }
+};
+
+```
+
+Apply the collection of functions to objects:
+
+```
+let bird = {
+  name: "Donald",
+  numLegs: 2
+};
+
+let plane = {
+  model: "777",
+  numPassengers: 524
+};
+
+flyMixin(bird);
+flyMixin(plane);
+```
+
+#### Block Immediately Invoked Function Expression (IIFE)
 
 
+```
+(function () {
+  console.log("Chirp, chirp!");
+})();
+```
 
+**often used to group related functionality into a single object or module**
 
+相关功能方法:
 
+```
+function glideMixin(obj) {
+  obj.glide = function() {
+    console.log("Gliding on the water");
+  };
+}
+function flyMixin(obj) {
+  obj.fly = function() {
+    console.log("Flying, wooosh!");
+  };
+}
+```
+
+利用代码块合并成一个模块:
+
+```
+let motionModule = (function () {
+  return {
+    glideMixin: function(obj) {
+      obj.glide = function() {
+        console.log("Gliding on the water");
+      };
+    },
+    flyMixin: function(obj) {
+      obj.fly = function() {
+        console.log("Flying, wooosh!");
+      };
+    }
+  }
+})();
+```
+
+```
+motionModule.glideMixin(duck);
+duck.glide();
+```
 
 
 
