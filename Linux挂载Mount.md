@@ -48,6 +48,8 @@
 
 >`sudo fdisk -l | grep NTFS` 只列出特定文件的文件系统
 
+* 或者使用`sudo diskutil list` 列出磁盘信息
+
 * 使用命令`lsblk`可查看系统中所有磁盘的信息，如：
 
 >
@@ -165,7 +167,7 @@ Purpose This directory is provided so that the system administrator may temporar
 >
 `sudo mount /dev/sda1 /media/Transfer`
 >
->这里不同使用`-t`去指定对应设备的文件系统，是系统会使用`/etc/filesystems`中系统指定的尝试挂载文件系统类型，按优先顺序进行尝试，匹配成功的文件系统就进挂载。
+>这里不使用`-t`去指定对应设备的文件系统，是系统会使用`/etc/filesystems`中系统指定的尝试挂载文件系统类型，按优先顺序进行尝试，匹配成功的文件系统就进挂载。
 >
 >`/proc/filesystems`中的是系统已载入的文件系统。
 
