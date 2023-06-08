@@ -95,9 +95,11 @@ FROM table_name;
 
 `SELECT * FROM Customers;`	//  查询  Customers 表中的所有数据
 `SELECT CustomerName, City FROM Customers;` //  查询  Customers 表中特定列信息
+`SELECT * FROM artists LIMIT 5 OFFSET 100;` // 查询 101～105 条的数据
 
 <details>
 <summary> 更多信息</summary>
+
 ####  DISTINCT
 
 >`DISTINCT `关键字是返回不重复的数据
@@ -323,6 +325,13 @@ select * from movie m
 join MovieTags mt on m.id=mt.movieId
 join tags t on t.id=mt.tagId
 where m.name="东京物语";
+
+输出电影id为1292001（海上钢琴师）的所有演员
+SELECT c.id, c.name  FROM movie m
+JOIN movie_actor ma ON ma.movie_id = m.id
+JOIN celebrity c ON c.id = ma.actor_id
+WHERE m.id=1292001;
+
 ```
 
 ## [维基百科] 语法图

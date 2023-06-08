@@ -365,7 +365,7 @@ const tomorrow = HIGH_TEMPERATURES. tomorrow;
 // 赋新值 可嵌套
 const {today: highToday, tomorrow: highTomorrow} = HIGH_TEMPERATURES;
 等同与：
-const today  = HIGH_TEMPERATURES.today
+const highToday  = HIGH_TEMPERATURES.today
 const highTomorrow = HIGH_TEMPERATURES. tomorrow
 
 函数参数解构
@@ -663,7 +663,7 @@ console.log(ownProps);	// name color and numLegs
 let ownProps = [];
 let prototypeProps = [];
 
-for (let property in Bird) {
+for (let property in duck) {
   if(duck.hasOwnProperty(property)) {
     ownProps.push(property);
   } else {
