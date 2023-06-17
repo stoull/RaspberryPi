@@ -52,6 +52,8 @@ $ flask run
 **让服务在网络可见：**
 `$ flask run --host=0.0.0.0`
 
+`$ flask run --host=0.0.0.0 --port 5001`
+
 这让系统监听所有公共ip，注意安全！
 
 其它url path访问，或处理json接口等，详见[Quickstart](https://flask.palletsprojects.com/en/2.0.x/quickstart/#a-minimal-application)
