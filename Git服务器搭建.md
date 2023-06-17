@@ -27,7 +27,14 @@ scp -r my_project.git user@git.example.com:/srv/git
 
 ```
 $ git clone user@git.example.com:/srv/git/my_project.git
+
+
+$ git clone ssh://127.0.0.1:/srv/git/my_project.git
+
 ```
+
+
+
 如果用户使用`ssh`连接服务器，并有对：`/srv/git/my_project.git`有写的权限，那这个用户同样也可以使用`push`命令。
 
 #### 权限问题
