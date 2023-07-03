@@ -1,8 +1,10 @@
-# wifi 网络连接
+# RaspberryPi_WiFi设置
 
 [使用wpa_cli](https://wiki.archlinux.org/title/Wpa_supplicant_(简体中文))
 
 [Raspberry Pi Documentation - Configuration](https://www.raspberrypi.com/documentation/computers/configuration.html)
+
+[FreeBSD Manual Pages wpa_supplicant.conf](https://man.freebsd.org/cgi/man.cgi?wpa_supplicant.conf(5))
 
 因为学习的原因，我的pi要在我的工作地点和家里频繁移动，这样我希望我的pi当我到家的时候能自动接家的wifi，到办公室的时候能够自动的接入到公室的wifi。
 我将`/etc/wpa_supplicant/wpa_supplicant.conf`文件中的内容更改为下面注释中的内容，就满足了我的需求。
